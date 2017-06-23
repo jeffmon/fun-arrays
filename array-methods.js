@@ -66,7 +66,7 @@ var datasetWithRoundedDime = dataset.bankBalances.map(function(item){
   return {
     "amount": item.amount,
     "state": item.state,
-    "roundedDime": (Math.round(item.amount * 10) / 10).toFixed(2)
+    "roundedDime": Math.round(item.amount * 10) / 10
   };
 });
 
