@@ -71,7 +71,14 @@ var datasetWithRoundedDime = dataset.bankBalances.map(function(item){
 });
 
 // set sumOfBankBalances to be the sum of all value held at `amount` for each bank object
-var sumOfBankBalances = null;
+/*var sumOfBankBalances = dataset.bankBalances.reduce(function(start, item){
+  return item.amount;
+}, 0);*/
+
+var sumOfBankBalances = dataset.bankBalances.reduce(function(allAmounts, item){
+  var total = allAmounts + Number(item.amount);
+  return Math.round(total * 100) / 100;
+}, 0);
 
 /*
   from each of the following states:
