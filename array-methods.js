@@ -31,7 +31,13 @@ var hundredThousandairs = dataset.bankBalances.filter(function(item){
     }
   assign the resulting new array to `datasetWithRoundedDollar`
 */
-var datasetWithRoundedDollar = null;
+var datasetWithRoundedDollar = dataset.bankBalances.map(function(item){
+  return {
+    "amount": item.amount,
+    "state": item.state,
+    "rounded": Math.round(item.amount)
+  };
+});
 
 /*
   DO NOT MUTATE DATA.
