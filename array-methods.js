@@ -108,14 +108,13 @@ function addInterest(item){
   };
 }
 
+
 function addAll(allAmounts, item){
   var rounded = Math.round((allAmounts + item.amount) * 100) / 100;
   return rounded;
 }
 
 var sumOfInterests = dataset.bankBalances.filter(theseStatesOnly).map(addInterest).reduce(addAll, 0);
-
-console.log(sumOfInterests);
 
 /*
   aggregate the sum of bankBalance amounts
@@ -133,7 +132,24 @@ console.log(sumOfInterests);
     round this number to the nearest 10th of a cent before moving on.
   )
  */
-var stateSums = null;
+
+
+
+function aggregateSums(ourState, account){
+  var numbered = account.amount;
+  var rounded = Math.round(numbered * 100) / 100;
+
+  ourState[account.state] += rounded;
+  ourState[account.state] = Number(rounded);
+  return ourState;
+
+
+}
+
+
+var stateSums = dataset.bankBalances.reduce(aggregateSums, {});
+
+console.log(stateSums);
 
 /*
   from each of the following states:
